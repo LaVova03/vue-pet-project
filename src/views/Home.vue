@@ -41,7 +41,7 @@ export default {
       if (this.userName && this.password) {
         sessionStorage.setItem("token", "da8da8d468sad8sad8s6ada8d46");
         this.$store.commit("setToken", "da8da8d468sad8sad8s6ada8d46");
-        this.$router.push("about");
+        this.$router.push("main");
       } else {
         if (!this.userName) {
           this.userNameError = "Enter your username";
@@ -69,7 +69,7 @@ export default {
 form {
   width: 400px;
   height: 300px;
-  border-radius: 20px;
+  border-radius: @border-radius;
   background-color: @primary-color;
   font-size: @font-size;
   .column();

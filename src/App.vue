@@ -2,13 +2,13 @@
   <div class="app">
     <header>
       <nav>
-        <router-link class="nav" to="/">Главная</router-link> |
+        <router-link class="nav" to="/">Home</router-link> |
         <router-link
           class="nav"
-          to="/about"
+          to="/main"
           :class="{ 'disabled-link': !token }"
           :style="{ pointerEvents: token ? 'auto' : 'none' }"
-          >О нас
+          >Main
         </router-link>
       </nav>
       <div v-if="token">
@@ -30,7 +30,7 @@
 <script>
 import { mapActions } from "vuex";
 import { SvgSprite } from "vue-svg-sprite";
-import MainButton from "./components/MainButton.vue";
+import MainButton from "@/components/MainButton.vue";
 
 export default {
   components: {
