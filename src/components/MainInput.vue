@@ -43,14 +43,7 @@ export default {
   text-align: left;
 
   input {
-    width: 250px;
-    padding: 10px;
-    border-radius: 4px;
-    outline: none;
-    font-size: 16px;
-    background-color: white;
-    color: black;
-
+    .inptSize();
     &:focus {
       border: 2px solid @border-color;
     }

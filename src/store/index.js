@@ -15,6 +15,15 @@ const store = createStore({
         },
         setData(state, payload) {
             state.data = payload
+        },
+        removeItem(state, id) {
+            state.data = state.data.filter(item => item.id !== id)
+        },
+        updateItem(state, item) {
+            const index = state.data.findIndex(el => el.id === item.id);
+            if (index !== -1) {
+                state.data.splice(index, 1, item);
+            }
         }
     },
     actions: {
@@ -26,6 +35,26 @@ const store = createStore({
                 }
             } catch (error) {
                 console.error('Error with get data', error)
+            }
+        },
+        async deleteItem({ commit }, id) {
+            try {
+                const response = await axios.delete(`${BASE_URL}/${id}`);
+                if (response.status === 200) {
+                    commit('removeItem', id);
+                }
+            } catch (error) {
+                console.error('Error with delete data', error)
+            }
+        },
+        async editItem({ commit }, item) {
+            try {
+                const response = await axios.put(`${BASE_URL}/${item.id}`, item);
+                if (response.status === 200) {
+                    commit('updateItem', response.data);
+                }
+            } catch (error) {
+                console.error('Error with edit data', error)
             }
         }
     }

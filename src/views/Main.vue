@@ -8,24 +8,41 @@
         class="item"
         :style="{ transitionDelay: index * 100 + 'ms' }"
       >
-        <Card :item="item" />
+        <Card :item="item" @open-edit-modal="openEditModal(item)" />
       </div>
       <div v-else class="load">Loading...</div>
     </transition-group>
+    <EditModal
+      :card="selectedItem"
+      v-show="showEditModal"
+      @open-edit-modal="showEditModal = !showEditModal"
+    />
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
 import Card from "@/components/Card.vue";
+import EditModal from "@/components/EditModal.vue";
 
 export default {
   name: "Main",
   components: {
     Card,
+    EditModal,
+  },
+  data() {
+    return {
+      showEditModal: false,
+      selectedItem: null,
+    };
   },
   methods: {
     ...mapActions(["fetchData"]),
+    openEditModal(card) {
+      this.selectedItem = card;
+      this.showEditModal = !this.showEditModal;
+    },
   },
   mounted() {
     this.fetchData();
@@ -57,17 +74,16 @@ export default {
 }
 
 .wrap-inner {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 50px;
+  width: calc(100vw - 4rem);
+  gap: 50px;
+  justify-items: center;
+  align-items: center;
 }
 
 .wrap-card {
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-
   .item {
     position: relative;
   }

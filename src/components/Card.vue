@@ -1,17 +1,23 @@
 <template>
   <ul>
-    <li>{{ item.id }}</li>
-    <li>{{ item.startDate }}</li>
-    <li>{{ item.startTime }}</li>
-    <li>{{ item.repeat }}</li>
+    <li>Id: {{ item.id }}</li>
+    <li>Date: {{ item.startDate }}</li>
+    <li>Start time: {{ item.startTime }}</li>
+    <li>Repeat: {{ item.repeat }}</li>
     <li>
-      <SvgSprite symbol="delete" size="30" fill="red" />
-      <SvgSprite symbol="edit" size="30" fill="blue" />
+      <SvgSprite
+        symbol="delete"
+        size="24"
+        fill="red"
+        @click="deleteCard(item.id)"
+      />
+      <SvgSprite symbol="edit" size="24" fill="blue" @click="openModal" />
     </li>
   </ul>
 </template>
 <script>
 import { SvgSprite } from "vue-svg-sprite";
+import { mapActions } from "vuex";
 export default {
   name: "Card",
   components: {
@@ -21,6 +27,18 @@ export default {
     item: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    ...mapActions(["deleteItem", "editItem"]),
+    deleteCard(id) {
+      this.deleteItem(id);
+    },
+    updateCard(item) {
+      this.editItem(item);
+    },
+    openModal() {
+      this.$emit('open-edit-modal');
     },
   },
 };
@@ -43,5 +61,9 @@ ul {
     justify-content: right;
     gap: 10px;
   }
+}
+
+.icon {
+  cursor: pointer;
 }
 </style>
