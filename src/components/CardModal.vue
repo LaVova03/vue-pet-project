@@ -6,6 +6,12 @@
         <h2>{{ card ? "Edit Card" : "Create Card" }}</h2>
         <form @submit.prevent="sendForm">
           <MainInput
+            v-model:value="item.eventName"
+            placeholder="Event Name"
+            :error="errorEventName"
+            @clear-error="clearError('eventName')"
+          />
+          <MainInput
             v-model:value="item.startDate"
             placeholder="Start Date"
             :error="errorStartDate"
@@ -18,18 +24,15 @@
             @clear-error="clearError('startTime')"
           />
           <div class="select">
-            <select
-              v-model="item.repeat"
-              :error="errorRepeat"
-              @clear-error="clearError('repeat')"
-            >
-              <option :value="item.repeat" disabled selected>
-                {{ card ? card.repeat : "Choose your option" }}
-              </option>
+            <select v-model="item.repeat" @change="clearError('repeat')">
+              <option disabled value="">Choose your option</option>
               <option value="Every Day">Every Day</option>
               <option value="Every Week">Every Week</option>
               <option value="Every Month">Every Month</option>
             </select>
+            <div v-if="errorRepeat" class="error-message">
+              {{ errorRepeat }}
+            </div>
           </div>
           <MainButton type="submit" />
         </form>
@@ -44,7 +47,7 @@ import MainButton from "./MainButton.vue";
 import MainInput from "./MainInput.vue";
 
 export default {
-  name: "EditModal",
+  name: "CardModal",
   components: {
     MainInput,
     MainButton,
@@ -59,11 +62,13 @@ export default {
     return {
       item: {
         id: this.card ? this.card.id : null,
+        eventName: this.card ? this.card.eventName : "",
         startDate: this.card ? this.card.startDate : "",
         startTime: this.card ? this.card.startTime : "",
         repeat: this.card ? this.card.repeat : "",
       },
 
+      errorEventName: "",
       errorStartDate: "",
       errorStartTime: "",
       errorRepeat: "",
@@ -74,6 +79,7 @@ export default {
       handler(newCard) {
         if (newCard) {
           this.item.id = newCard.id || null;
+          this.item.eventName = newCard.eventName || "";
           this.item.startDate = newCard.startDate || "";
           this.item.startTime = newCard.startTime || "";
           this.item.repeat = newCard.repeat || "";
@@ -84,18 +90,30 @@ export default {
   },
 
   methods: {
-    ...mapActions(["editItem"]),
+    ...mapActions(["editItem", "createItem"]),
     closeModal() {
       this.$emit("open-edit-modal");
+      this.errorEventName = "";
+      this.errorStartDate = "";
+      this.errorStartTime = "";
+      this.errorRepeat = "";
     },
     sendForm() {
       if (this.item.startDate && this.item.startTime && this.item.repeat) {
-        this.editItem(this.item);
+        if (this.card) {
+          this.editItem(this.item);
+        } else {
+          this.createItem(this.item);
+        }
         this.closeModal();
+        this.item.eventName = "";
         this.item.startDate = "";
         this.item.startTime = "";
         this.item.repeat = "";
       } else {
+        if (!this.item.eventName) {
+          this.errorEventName = "Enter your event name";
+        }
         if (!this.item.startDate) {
           this.errorStartDate = "Enter your start date";
         }
@@ -108,6 +126,9 @@ export default {
       }
     },
     clearError(field) {
+      if (field === "eventName") {
+        this.errorEventName = "";
+      }
       if (field === "startDate") {
         this.errorStartDate = "";
       }
@@ -174,6 +195,10 @@ export default {
         border: 2px solid @border-color;
       }
     }
+  }
+  .error-message {
+    color: @error-color;
+    font-weight: 600;
   }
 }
 </style>

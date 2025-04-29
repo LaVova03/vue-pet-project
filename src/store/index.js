@@ -24,6 +24,9 @@ const store = createStore({
             if (index !== -1) {
                 state.data.splice(index, 1, item);
             }
+        },
+        postItem(state, item) {
+            state.data.push(item)
         }
     },
     actions: {
@@ -55,6 +58,16 @@ const store = createStore({
                 }
             } catch (error) {
                 console.error('Error with edit data', error)
+            }
+        },
+        async createItem({ commit }, item) {
+            try {
+                const response = await axios.post(`${BASE_URL}`, item);
+                if (response.status === 200 || 201) {
+                    commit('postItem', response.data);
+                }
+            } catch (error) {
+                console.error('Error with create data', error)
             }
         }
     }

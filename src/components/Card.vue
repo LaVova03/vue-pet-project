@@ -1,6 +1,7 @@
 <template>
   <ul>
     <li>Id: {{ item.id }}</li>
+    <li>Event name: {{ item.eventName }}</li>
     <li>Date: {{ item.startDate }}</li>
     <li>Start time: {{ item.startTime }}</li>
     <li>Repeat: {{ item.repeat }}</li>
@@ -38,7 +39,7 @@ export default {
       this.editItem(item);
     },
     openModal() {
-      this.$emit('open-edit-modal');
+      this.$emit("open-edit-modal");
     },
   },
 };

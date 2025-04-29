@@ -12,10 +12,10 @@
       </div>
       <div v-else class="load">Loading...</div>
     </transition-group>
-    <EditModal
+    <CardModal
       :card="selectedItem"
-      v-show="showEditModal"
-      @open-edit-modal="showEditModal = !showEditModal"
+      v-show="showCardModal"
+      @open-edit-modal="showCardModal = !showCardModal"
     />
   </div>
 </template>
@@ -23,17 +23,17 @@
 <script>
 import { mapActions } from "vuex";
 import Card from "@/components/Card.vue";
-import EditModal from "@/components/EditModal.vue";
+import CardModal from "@/components/CardModal.vue";
 
 export default {
   name: "Main",
   components: {
     Card,
-    EditModal,
+    CardModal,
   },
   data() {
     return {
-      showEditModal: false,
+      showCardModal: false,
       selectedItem: null,
     };
   },
@@ -41,7 +41,7 @@ export default {
     ...mapActions(["fetchData"]),
     openEditModal(card) {
       this.selectedItem = card;
-      this.showEditModal = !this.showEditModal;
+      this.showCardModal = !this.showCardModal;
     },
   },
   mounted() {

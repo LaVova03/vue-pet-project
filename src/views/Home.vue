@@ -42,6 +42,8 @@ export default {
         sessionStorage.setItem("token", "da8da8d468sad8sad8s6ada8d46");
         this.$store.commit("setToken", "da8da8d468sad8sad8s6ada8d46");
         this.$router.push("main");
+        this.userName = "";
+        this.password = "";
       } else {
         if (!this.userName) {
           this.userNameError = "Enter your username";
