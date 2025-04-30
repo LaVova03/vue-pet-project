@@ -77,7 +77,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @import "@/assets/global.less";
 
 .app {
@@ -108,5 +108,13 @@ export default {
 .disabled-link {
   color: grey;
   pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .app {
+    width: calc(100vw - 5rem);
+    padding: 4rem 0 1rem;
+    min-height: calc(100vh - 5rem);
+  }
 }
 </style>

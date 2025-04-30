@@ -55,7 +55,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @import "@/assets/global.less";
 
 .fade-enter-active,
@@ -94,5 +94,11 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50% -50%);
+}
+
+@media (max-width: 768px) {
+  .wrap-inner {
+    gap: 10px;
+  }
 }
 </style>

@@ -65,7 +65,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @import "@/assets/global.less";
 
 form {
@@ -77,5 +77,12 @@ form {
   .column();
   justify-content: center;
   gap: 10px;
+}
+
+@media (max-width: 768px) {
+  form {
+    width: auto;
+    padding: 20px;
+  }
 }
 </style>

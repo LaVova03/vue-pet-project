@@ -143,7 +143,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @import "@/assets/global.less";
 
 .modal-overlay {
@@ -199,6 +199,13 @@ export default {
   .error-message {
     color: @error-color;
     font-weight: 600;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal {
+    width: 80%;
+    padding: 20px;
   }
 }
 </style>
