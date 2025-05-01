@@ -3,7 +3,7 @@
     <div class="modal">
       <main>
         <div class="close" @click="closeModal">+</div>
-        <h2>{{ card ? "Edit Card" : "Create Card" }}</h2>
+        <slot />
         <form @submit.prevent="sendForm">
           <MainInput
             v-model:value="item.eventName"

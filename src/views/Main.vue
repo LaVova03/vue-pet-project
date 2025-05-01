@@ -16,7 +16,9 @@
       :card="selectedItem"
       v-show="showCardModal"
       @open-edit-modal="showCardModal = !showCardModal"
-    />
+    >
+      <h2>Edit Card</h2>
+    </CardModal>
   </div>
 </template>
 

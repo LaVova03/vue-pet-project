@@ -20,7 +20,9 @@
       v-if="showConfirm"
       @delete="deleteCard"
       @close="closeConfirmModal"
-    />
+    >
+      <h2>Are you sure you want to delete this card?</h2>
+    </ConfirmModal>
   </div>
 </template>
 <script>

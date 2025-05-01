@@ -3,7 +3,7 @@
     <div class="modal">
       <main>
         <div class="close" @click="$emit('close')">+</div>
-        <h2>Are you sure you want to delete this card?</h2>
+        <slot />
         <div class="buttons">
           <MainButton nameBtn="Cancel" @click="$emit('close')" />
           <MainButton nameBtn="Delete" @click="$emit('delete')" />

@@ -34,7 +34,9 @@
     <CardModal
       v-show="showCreateModal"
       @open-edit-modal="showCreateModal = !showCreateModal"
-    />
+    >
+      <h2>Create Card</h2>
+    </CardModal>
   </div>
 </template>
 
