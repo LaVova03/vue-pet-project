@@ -1,4 +1,5 @@
 <template>
+  <Header>Log In</Header>
   <form @submit.prevent="sendForm">
     <MainInput
       type="text"
@@ -14,19 +15,21 @@
       :error="passwordError"
       @clear-error="clearError('password')"
     />
-    <MainButton type="submit" nameBtn="Submit" />
+    <MainButton type="submit">Submit</MainButton>
   </form>
 </template>
 
 <script>
 import MainInput from "@/components/MainInput.vue";
 import MainButton from "@/components/MainButton.vue";
+import Header from "@/components/Header.vue";
 
 export default {
   name: "Home",
   components: {
     MainInput,
     MainButton,
+    Header,
   },
   data() {
     return {
@@ -65,7 +68,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import "@/assets/global.less";
 
 form {

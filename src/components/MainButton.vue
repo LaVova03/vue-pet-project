@@ -1,16 +1,13 @@
 <template>
-  <button>{{ nameBtn }}</button>
+  <button @click="$emit('click')">
+    <slot />
+  </button>
 </template>
 
 <script>
 export default {
   name: "MainButton",
-  props: {
-    nameBtn: {
-      type: String,
-      default: "Approve",
-    },
-  },
+  inheritAttrs: false,
 };
 </script>
 

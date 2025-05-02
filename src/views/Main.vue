@@ -1,5 +1,6 @@
 <template>
   <div class="wrap-card">
+    <Header v-if="data">Your schedule</Header>
     <transition-group name="fade" tag="div" class="wrap-inner">
       <div
         v-if="data"
@@ -26,12 +27,14 @@
 import { mapActions } from "vuex";
 import Card from "@/components/Card.vue";
 import CardModal from "@/components/CardModal.vue";
+import Header from "@/components/Header.vue";
 
 export default {
   name: "Main",
   components: {
     Card,
     CardModal,
+    Header,
   },
   data() {
     return {
@@ -78,9 +81,8 @@ export default {
 .wrap-inner {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 50px;
   width: calc(100vw - 4rem);
-  gap: 50px;
+  gap: 20px;
   justify-items: center;
   align-items: center;
 }

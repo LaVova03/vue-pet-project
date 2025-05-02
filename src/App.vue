@@ -12,10 +12,10 @@
         </router-link>
       </nav>
       <div v-if="token">
-        <MainButton @click="logOut" nameBtn="LogOut" />
+        <MainButton @click="logOut">LogOut</MainButton>
       </div>
       <div v-show="route == '/main'">
-        <MainButton @click="createCard" nameBtn="Create" />
+        <MainButton @click="createCard">Create</MainButton>
       </div>
     </header>
     <main>

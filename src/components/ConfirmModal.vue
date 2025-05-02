@@ -5,8 +5,8 @@
         <div class="close" @click="$emit('close')">+</div>
         <slot />
         <div class="buttons">
-          <MainButton nameBtn="Cancel" @click="$emit('close')" />
-          <MainButton nameBtn="Delete" @click="$emit('delete')" />
+          <MainButton @click="$emit('close')">Cancel</MainButton>
+          <MainButton @click="$emit('delete')">Delete</MainButton>
         </div>
       </main>
     </div>

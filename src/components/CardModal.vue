@@ -34,7 +34,7 @@
               {{ errorRepeat }}
             </div>
           </div>
-          <MainButton type="submit" />
+          <MainButton type="submit">Approve</MainButton>
         </form>
       </main>
     </div>
