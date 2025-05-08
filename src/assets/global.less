@@ -1,11 +1,32 @@
-@primary-color: #29865d;
+@primary-color: #d30158;
+@text-color: white;
 @error-color: #ff0000;
 @border-color: #646cff;
 @hover-color: #747bff;
-@bkg-color: #4b4a4a;
+@bkg-color: #242424;
+@shadow-color: rgb(252, 252, 252);
+@disabled-color: #dbdbdb;
 
 @font-size: 16px;
 @border-radius: 20px;
+
+.hederFooter() {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: @bkg-color;
+  width: calc(100vw - 80px);
+  padding: 0 40px;
+  justify-content: space-between;
+  height: 70px;
+  box-shadow: 0 0 5px @shadow-color;
+
+  @media (max-width: 768px) {
+    padding: 0 10px;
+    width: calc(100vw - 20px);
+  }
+}
 
 .column () {
   display: flex;
