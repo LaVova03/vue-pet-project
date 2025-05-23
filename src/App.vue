@@ -1,21 +1,49 @@
 <template>
   <div class="container">
-    <header>header</header>
-    <main>main</main>
-    <footer>footer</footer>
+    <header>
+      <Header />
+    </header>
+    <main class="container__main">
+      <router-view />
+    </main>
+    <footer>
+      <Footer />
+    </footer>
   </div>
 </template>
 
-<script></script>
+<script>
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
+
+export default {
+  components: {
+    Header,
+    Footer,
+  },
+};
+</script>
 
 <style lang="less">
 @import "@/assets/global.less";
 
 .container {
-  position: relative;
   min-height: 100vh;
-  width: 100vw;
-  background-color: @bkg-color;
+  gap: 20px;
   .column();
+
+  &__main {
+    width: 80vw;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  @media(max-width:768px){
+    gap: 10px;
+   
+    &__main {
+      width: 95vw;
+    }
+  }
 }
 </style>
